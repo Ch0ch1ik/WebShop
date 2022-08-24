@@ -1,0 +1,44 @@
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">wyloguj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">zarządzaj</a>
+            </li>
+            <li>
+                <nav class="nav-item">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png"
+                                 alt="" width="30" height="24"
+                                 class="d-inline-block align-text-top">
+                            Koszyk
+                        </a>
+                    </div>
+                </nav>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">zaloguj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_user' %}">zarejestruj</a>
+            </li>
+            <li>
+                <nav class="nav-item">
+                    <div class="container-fluid">
+                        <a class="nav-link" href="#">
+                            Koszyk
+                            <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png"
+                                 alt="" width="30" height="24"
+                                 class="d-inline-block align-text-top">
+
+                        </a>
+                    </div>
+                </nav>
+            </li>
+        {% endif %}
+    </ul>
+</div>

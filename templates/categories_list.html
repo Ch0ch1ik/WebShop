@@ -1,0 +1,30 @@
+{% extends 'dashboard.html' %}
+{% block drugi %}
+    <div class="card" style="background-color: #D8E1FF;">
+        <table class="table-responsive">
+
+            <tr>
+                <th>Lp</th>
+                <th>Kategoria nadrzędna</th>
+                <th>Kategoria własna</th>
+            </tr>
+            {% for category in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ category.parent }}</td>
+                    <td>{{ category.name }}</td>
+                    <td><a href="{{ category.get_absolute_url }}">edytuj</a></td>
+                    <td><a href="{% url 'delete_category' category.id%}">usuń</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="card" style="background-color: #D8E1FF;">
+            <div class="card-body">
+                <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_category' %}">Dodaj
+                    nową kategorię</p></a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

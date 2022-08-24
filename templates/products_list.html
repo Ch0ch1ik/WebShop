@@ -1,0 +1,28 @@
+{% extends 'dashboard.html' %}
+{% block drugi %}
+    <div class="card" style="background-color: #D8E1FF;">
+        <table class="table-responsive">
+
+            <tr>
+                <th>Lp</th>
+                <th>Nazwa</th>
+                <th>Cena</th>
+            </tr>
+            {% for product in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td><a href="{{ product.get_absolute_url }}">Szczegóły produktu</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="card" style="background-color: #D8E1FF;">
+            <div class="card-body">
+                <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_product' %}">Dodaj nowy produkt</p></a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

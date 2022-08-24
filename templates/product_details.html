@@ -1,0 +1,36 @@
+{% extends 'dashboard.html' %}
+{% block drugi %}
+    <div class="card" style="background-color: #D8E1FF;">
+        <table class="table-responsive">
+
+            <tr>
+                <th>Kategoria</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Cena</th>
+                <th>Dostępne kolory</th>
+                <th>Dostępne rozmiary</th>
+                <th>Na stanie</th>
+            </tr>
+            {% for product in object_list %}
+                <tr>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.available_colours }}</td>
+                    <td>{{ product.available_sizes }}</td>
+                    <td>{{ product.stock_quantity }}</td>
+                    <td><a href="{{ product.get_absolute_url }}">Szczegóły produktu</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="card" style="background-color: #D8E1FF;">
+            <div class="card-body">
+                <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_product' %}">Dodaj nowy produkt</p></a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

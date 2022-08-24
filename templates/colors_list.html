@@ -1,0 +1,26 @@
+{% extends 'dashboard.html' %}
+{% block drugi %}
+    <div class="card" style="background-color: #D8E1FF;">
+        <table class="table-responsive">
+
+            <tr>
+                <th>Lp</th>
+                <th>Nazwa koloru</th>
+            </tr>
+            {% for color in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ color }}</td>
+                    <td><a href="{{ color.get_absolute_url }}">edytuj</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="card" style="background-color: #D8E1FF;">
+            <div class="card-body">
+                <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_colors' %}">Dodaj nowy kolor</p></a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
