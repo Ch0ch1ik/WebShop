@@ -1,9 +1,16 @@
 from django import forms
 
-from shop.models import Product, Category
+from shop.models import Product, Category, Sizes, Colors
 
 
 class AddProductForm(forms.ModelForm):
+    colors = Colors.objects.all().values_list('id', 'color_name')
+    available_colours = forms.MultipleChoiceField(choices=colors, widget=forms.CheckboxSelectMultiple)
+    sizes = Sizes.objects.all().values_list('id', 'size_name')
+    available_sizes = forms.MultipleChoiceField(choices=sizes, widget=forms.CheckboxSelectMultiple)
+    categories = Category.objects.all().values_list('id', 'name')
+    category = forms.MultipleChoiceField(choices=categories, widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Product
         fields = '__all__'

@@ -1,27 +1,37 @@
 {% extends 'dashboard.html' %}
 {% block drugi %}
-    <div class="card" style="background-color: #D8E1FF;">
-        <table class="table-responsive">
+    <div class="card" style="background-color: #D6F8D6;">
+        <div class="card-body">
+            <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_product' %}"><b>Dodaj
+                nowy produkt</b></p></a>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table">
 
             <tr>
-                <th>Lp</th>
-                <th>Nazwa</th>
-                <th>Cena</th>
+                <th scope="col">#</th>
+                <th scope="col">Kategoria</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Cena</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             {% for product in object_list %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>
+                        {% for category in product.category.all %}
+                            {{ category.name }} -
+                        {% endfor %}
+                    </td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
                     <td><a href="{{ product.get_absolute_url }}">Szczegóły produktu</a></td>
+                    <td><a href="{% url 'delete_product' product.id %}">usuń</a></td>
                 </tr>
             {% endfor %}
         </table>
-        <div class="card" style="background-color: #D8E1FF;">
-            <div class="card-body">
-                <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_product' %}">Dodaj nowy produkt</p></a>
-            </div>
-        </div>
     </div>
 
 

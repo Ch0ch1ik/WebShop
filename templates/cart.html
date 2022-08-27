@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {#    {% for object in object_list %}#}
+    {#        {{ object }}#}
+    {#    {% endfor %}#}
+
+
+    <h1>Twój koszyk</h1>
+    <table class="table">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nazwa Produktu:</th>
+            <th scope="col">Kolor:</th>
+            <th scope="col">Rozmiar:</th>
+            <th scope="col">Ilość:</th>
+            <th scope="col">Cena:</th>
+            <th scope="col">Wartość:</th>
+        </tr>
+        {% for product in products.all %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ product.product.name }}</td>
+                <td>{{ product.product_color }}</td>
+                <td>{{ product.product_size }}</td>
+                <td>{{ product.amount }}</td>
+                <td>{{ product.product.price }}</td>
+                <td>{% widthratio product.amount 1 product.product.price %}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+{% endblock %}

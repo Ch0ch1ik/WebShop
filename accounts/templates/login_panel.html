@@ -1,17 +1,18 @@
+{% load static %}
 <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
         {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">wyloguj</a>
+                <a class="nav-link" href="{% url 'logout' %}">Wyloguj</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard' %}">zarządzaj</a>
+                <a class="nav-link" href="{% url 'dashboard' %}">Zarządzaj</a>
             </li>
             <li>
                 <nav class="nav-item">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png"
+                        <a class="nav-link" href="{% url 'cart' %}">
+                            <img src="{% static "/shop/media/kisspng-computer-icons-portable-network-graphics-scalable-shopping-cart-svg-png-icon-free-download-19-184-5ca6a1e6e52a30.1014776415544242949387.png" %}"
                                  alt="" width="30" height="24"
                                  class="d-inline-block align-text-top">
                             Koszyk
@@ -21,10 +22,10 @@
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">zaloguj</a>
+                <a class="nav-link" href="{% url 'login' %}">Zaloguj</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_user' %}">zarejestruj</a>
+                <a class="nav-link" href="{% url 'add_user' %}">Zarejestruj</a>
             </li>
             <li>
                 <nav class="nav-item">

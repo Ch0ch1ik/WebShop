@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for category in category_list %}
+    {% if category.children.all %}
+        <h1 scope="col"><a href="{% url 'products' category.id %}">{{ category }}</a></h1>
+        {% for child in category.children.all %}
+            <h3>&nbsp; &nbsp; - <a href="{% url 'products' child.id %}"> {{ child }}</a></h3>
+            {% if child.children.all %}
+                {% for grandchild in child.children.all %}
+                    <h5>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - <a href="{% url 'products' grandchild.id %}"> {{ grandchild }}</a></h5>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% elif not category.parent %}
+        <h1><a href="{% url 'products' category.id %}">{{ category }}</a></h1>
+    {% endif %}
+{% endfor %}
+
+
+{% endblock %}

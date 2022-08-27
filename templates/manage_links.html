@@ -1,36 +1,58 @@
-<div class="row row-cols-1 row-cols-md-2 g-4">
+{% load static %}
+<div class="card" style="background-color: #D6F8D6;margin-bottom: 20px">
+    <img style="width: 100px;height: 100px;" class="mx-auto d-block"
+         src="{% static '/shop/media/toppng.com-managed-services-icon-services-icon-png-black-378x389.png' %}"
+         alt="XYZ">
+    <div class="card-body">
+        <h2 class="card-title" style="text-align: center">Panel Zarządzania Sklepem</h2>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-md-4 g-4">
     <div class="col">
         <div class="card" style="background-color: #e3f2fd;">
-            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title"><a class="nav-link" href="{% url 'show_colors' %}">Kolory</h5>
-                <p class="card-text">Zarządzaj kolorami swoich produktów ;)</p></a>
+                <h5 class="card-title"><a class="nav-link" href="{% url 'show_colors' %}">
+                    <img style="width: 100px;height: 100px;"
+                         src="{% static '/shop/media/Lovepik_com-401524139-color-brush.png' %}"
+                         alt="...">
+                    Kolory</h5>
+                <p class="card-text">Zarządzaj kolorami swoich produktów ;)</p>
+                </a>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card" style="background-color: #e3f2fd;">
-            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title"><a class="nav-link" href="{% url 'show_sizes' %}">Rozmiary</a></h5>
+                <h5 class="card-title"><a class="nav-link" href="{% url 'show_sizes' %}">
+                    <img style="width: 100px;height: 100px;"
+                         src="{% static '/shop/media/Lovepik_com-400678518-sports-fitness-beauty-size.png' %}"
+                         alt="...">
+                    Rozmiary</a></h5>
                 <p class="card-text">Zarządzaj rozmiarami swoich produktów</p>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card" style="background-color: #e3f2fd;">
-            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title"><a class="nav-link" href="{% url 'show_products' %}">Produkty</a></h5>
+                <h5 class="card-title"><a class="nav-link" href="{% url 'show_products' %}">
+                    <img style="width: 100px;height: 100px;"
+                         src="{% static '/shop/media/Lovepik_com-610926781-MBE style digital product border decoration.png' %}"
+                         alt="...">
+                    Produkty</a></h5>
                 <p class="card-text">Zarządzaj produktami</p>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card" style="background-color: #e3f2fd;">
-            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title"><a class="nav-link" href="{% url 'show_categories' %}">Kategorie</a></h5>
+                <h5 class="card-title"><a class="nav-link" href="{% url 'show_categories' %}">
+                    <img style="width: 100px;height: 100px;"
+                         src="{% static '/shop/media/Lovepik_com-401553732-creative-ppt-medal-element.png' %}"
+                         alt="...">
+                    Kategorie</a></h5>
                 <p class="card-text">Zarządzaj kategoriami</p>
             </div>
         </div>

@@ -1,25 +1,29 @@
 {% extends 'dashboard.html' %}
 {% block drugi %}
-    <div class="card" style="background-color: #D8E1FF;">
-        <table class="table-responsive">
+    <div class="card" style="background-color: #D6F8D6;">
+        <div class="card-body">
+            <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_colors' %}"><b>Dodaj
+                nowy kolor</b></p></a>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table">
 
             <tr>
-                <th>Lp</th>
-                <th>Nazwa koloru</th>
+                <th scope="col">Lp</th>
+                <th scope="col">Nazwa koloru</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             {% for color in object_list %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
+                    <th scope="row">{{ forloop.counter }}</th>
                     <td>{{ color }}</td>
                     <td><a href="{{ color.get_absolute_url }}">edytuj</a></td>
+                    <td><a href="{% url 'delete_color' color.id %}">usuń</a></td>
                 </tr>
             {% endfor %}
         </table>
-        <div class="card" style="background-color: #D8E1FF;">
-            <div class="card-body">
-                <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_colors' %}">Dodaj nowy kolor</p></a>
-            </div>
-        </div>
     </div>
 
 

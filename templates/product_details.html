@@ -1,35 +1,41 @@
 {% extends 'dashboard.html' %}
 {% block drugi %}
-    <div class="card" style="background-color: #D8E1FF;">
-        <table class="table-responsive">
+    <div class="card" style="background-color: #D6F8D6;">
+        <div class="card-body">
+            <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_product' %}"><b>Dodaj
+                nowy produkt</b></p></a>
+        </div>
+    </div>
+    <div class="card">
+        <table class="table">
 
             <tr>
-                <th>Kategoria</th>
-                <th>Nazwa</th>
-                <th>Opis</th>
-                <th>Cena</th>
-                <th>Dostępne kolory</th>
-                <th>Dostępne rozmiary</th>
-                <th>Na stanie</th>
+                <th scope="col">Kategoria</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Cena</th>
+                <th scope="col">kolor</th>
+                <th scope="col">Rozmiar</th>
+                <th scope="col">Na stanie</th>
+                <th scope="col"></th>
             </tr>
-            {% for product in object_list %}
-                <tr>
-                    <td>{{ product.category }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.available_colours }}</td>
-                    <td>{{ product.available_sizes }}</td>
-                    <td>{{ product.stock_quantity }}</td>
-                    <td><a href="{{ product.get_absolute_url }}">Szczegóły produktu</a></td>
-                </tr>
-            {% endfor %}
+            <tr>
+                <td>{% for category in product.category.all %}{{ category }} | {% endfor %}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{% for item in product.available_colours.all %}
+                    {{ item.color_name }}
+                    {% endfor %}
+                </td>
+                <td>{% for item in product.available_sizes.all %}
+                    {{ item.size_name }}
+                    {% endfor %}
+                </td>
+                <td>{{ product.stock_quantity }}</td>
+                <td><a href="{{ product.get_edit_url }}">Edytuj</a></td>
+            </tr>
         </table>
-        <div class="card" style="background-color: #D8E1FF;">
-            <div class="card-body">
-                <p class="card-title"><a class="nav-link" style="text-align: center" href="{% url 'add_product' %}">Dodaj nowy produkt</p></a>
-            </div>
-        </div>
     </div>
 
 
