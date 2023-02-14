@@ -13,7 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from django.views.generic import TemplateView
 from accounts import views as acc_views
@@ -21,7 +24,7 @@ from shop import views as shop_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', shop_views.IndexView.as_view(), name='index'),
     path('login/', acc_views.LoginView.as_view(), name='login'),
     path('logout/', acc_views.LogoutView.as_view(), name='logout'),
     path('create_user/', acc_views.RegisterView.as_view(), name='add_user'),
@@ -32,11 +35,26 @@ urlpatterns = [
     path('add_product/', shop_views.AddProductView.as_view(), name='add_product'),
     path('show_products/', shop_views.ShowProductsView.as_view(), name='show_products'),
     path('product_detail/<int:pk>/', shop_views.ProductDetailsView.as_view(), name='product_details'),
+    path('edit_product/<int:pk>/', shop_views.ProductUpdateView.as_view(), name='edit_product'),
+    path('delete_product/<int:pk>/', shop_views.ProductDeleteView.as_view(), name='delete_product'),
     path('colors/', shop_views.ShowColorsView.as_view(), name='show_colors'),
     path('edit_color/<int:pk>/', shop_views.ColorsUpdateView.as_view(), name='edit_color'),
+    path('delete_color/<int:pk>/', shop_views.ColorDeleteView.as_view(), name='delete_color'),
     path('show_sizes/', shop_views.ShowSizesView.as_view(), name='show_sizes'),
     path('add_colors/', shop_views.AddColorsView.as_view(), name='add_colors'),
     path('add_sizes/', shop_views.AddSizesView.as_view(), name='add_sizes'),
     path('edit_size/<int:pk>/', shop_views.SizeUpdateView.as_view(), name='edit_size'),
+    path('delete_size/<int:pk>/', shop_views.SizeDeleteView.as_view(), name='delete_size'),
     path('dashboard/', shop_views.DashboardView.as_view(), name='dashboard'),
+    path('categories/', shop_views.CategoriesView.as_view(), name='categories'),
+    path('products/<int:pk>/', shop_views.CategoryProductsView.as_view(), name='products'),
+    path('cart/', shop_views.CartView.as_view(), name='cart'),
+    path('product_card/<int:pk>/', shop_views.ProductCardView.as_view(), name='product_card'),
+    path('search/', shop_views.SearchView.as_view(), name='search'),
+    path('create_order/', shop_views.CreateOrderView.as_view(), name='create_order'),
+    path('my_account/', shop_views.MyAccountView.as_view(), name='my_account'),
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

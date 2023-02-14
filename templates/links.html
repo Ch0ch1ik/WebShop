@@ -4,17 +4,11 @@
             <a class="nav-link" href="{% url 'index' %}">Strona Główna</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">Kategorie</a>
+            <a class="nav-link" href="{% url 'categories' %}">Kategorie</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">Dodaj Kategorie</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">Filmy</a>
-        </li>
-        <li class="nav-item">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Najlepsze produkty" aria-label="Search">
+            <form class="d-flex" role="search" action="{% url 'search' %}">
+                <input class="form-control me-2" id="search_box" name="search_box" type="text" placeholder="Czego szukasz? :)" aria-label="Search">
                 <button class="btn btn-danger" type="submit">Szukaj</button>
             </form>
         </li>

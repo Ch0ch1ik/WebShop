@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    Moje zamówienia:
+    <table class="table">
+        <tr>
+            <th>Numer zamówienia</th>
+            <th>Data utworzenia</th>
+            <th>Adres wysyłki</th>
+            <th>Status</th>
+            <th>Data aktualizacji</th>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.created }}</td>
+                <td>{{ order.address.city }} {{ order.address.address }} {{ order.address.zip }}</td>
+                <td>{% if order.status == 0 %}
+                    Zamówienie oczekuje na realizację
+                {% else %}
+                    Zamówienie zrealizowane :)
+                {% endif %}
+                </td>
+                <td>{{ order.updated }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

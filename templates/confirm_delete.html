@@ -1,9 +1,9 @@
 {% extends 'dashboard.html' %}
 {% block drugi %}
-    <div class="card" style="background-color: #D8E1FF;">
+    <div class="card" style="background-color: #D6F8D6;">
               <form method="post">
             {% csrf_token %}
-            <p>Na pewno chcesz usunąć kategorię "{{ object }}"?</p>
+            <p>Na pewno chcesz usunąć "{{ object }}"?</p>
             <input type="submit" value="Potwierdź">
         </form>
     </div>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {#    {% for object in object_list %}#}
+    {#        {{ object }}#}
+    {#    {% endfor %}#}
+
+
+    <h1>Twój koszyk</h1>
+    <table class="table">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nazwa Produktu:</th>
+            <th scope="col">Kolor:</th>
+            <th scope="col">Rozmiar:</th>
+            <th scope="col">Ilość:</th>
+            <th scope="col">Cena:</th>
+            <th scope="col">Wartość:</th>
+        </tr>
+        {% for product in products.all %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ product.product.name }}</td>
+                <td>{{ product.product_color }}</td>
+                <td>{{ product.product_size }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button value="{{ product.amount }}" type="submit" name="up{{ product.id }}">+
+                        </button>&emsp;{{ product.amount }}&emsp;<button type="submit"
+                                                                         name="down{{ product.id }}"
+                                                                         value="{{ product.amount }}">-
+                    </button>
+                    </form>
+                </td>
+                <td>{{ product.product.price }}</td>
+                <td>{{ product.get_sum }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Suma: {{ total_sum }}</td>
+        </tr>
+    </table>
+    <div class="card" style="background-color: #D6F8D6">
+        <div class="card-body" style="display: inline-flex; justify-content: space-around">
+
+            <p><a class="link-dark" href="{% url 'categories' %}">Kontynuuj zakupy</a></p>
+            <p><a class="link-dark" href="{% url 'create_order' %}">Złoż zamówienie</a></p>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

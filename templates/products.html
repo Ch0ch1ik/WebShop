@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    {% if products %}
+        {% if products|length == 0 %}
+            <p class="bs-popover-top">Niestety nie mamy tego czego szukasz :(</p>
+        {% else %}
+            {% for product in products %}
+                {% include 'product_card.html' %}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    {% if product_list %}
+        {% for product in product_list %}
+            {% include 'product_card.html' %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

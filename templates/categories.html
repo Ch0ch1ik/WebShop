@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="table">
+    {% for category in category_list %}
+        <tr>
+        {% if category.children.all %}
+            <td><h1 scope="col"><a class="nav-link" href="{% url 'products' category.id %}">{{ category }}</a></h1></td>
+            {% for child in category.children.all %}
+                <tr>
+                <td><h3>&nbsp; &nbsp; - <a class="nav-link" href="{% url 'products' child.id %}"> {{ child }}</a></h3></td>
+                {% if child.children.all %}
+                    {% for grandchild in child.children.all %}
+                        <tr>
+                        <td><h5>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - <a class="nav-link"
+                                href="{% url 'products' grandchild.id %}"> {{ grandchild }}</a></h5></td>
+                        </tr>
+                    {% endfor %}
+
+                {% endif %}
+                </tr>
+            {% endfor %}
+        {% elif not category.parent %}
+
+            <td><h1><a class="nav-link" href="{% url 'products' category.id %}">{{ category }}</a></h1></td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+
+    <style>
+    .nav-link {
+        font-size: large;
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+
+    .nav-link:hover {
+        color: orangered;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
