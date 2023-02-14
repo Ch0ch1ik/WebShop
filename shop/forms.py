@@ -1,5 +1,6 @@
 from django import forms
 
+import accounts.models
 from shop.models import Product, Category, Sizes, Colors
 
 
@@ -20,3 +21,16 @@ class AddCategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = '__all__'
+
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = accounts.models.Address
+        # fields = '__all__'
+        fields = ['country', 'city', 'address', 'zip']
+        widgets = {
+            'country': forms.Select,
+            'city': forms.TextInput,
+            'address': forms.TextInput,
+            'zip': forms.TextInput
+        }

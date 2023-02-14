@@ -1,6 +1,6 @@
 {% load static %}
-<div class="card" style="background-color: #D6F8D6;margin-bottom: 20px">
-    <img style="width: 100px;height: 100px;" class="mx-auto d-block"
+<div class="card" style="background-color: #D6F8D6;margin-bottom: 20px;margin-top: 10px">
+    <img style="width: 100px;height: 100px; padding-top: 5px" class="mx-auto d-block"
          src="{% static '/shop/media/toppng.com-managed-services-icon-services-icon-png-black-378x389.png' %}"
          alt="XYZ">
     <div class="card-body">
@@ -9,15 +9,14 @@
 </div>
 <div class="row row-cols-1 row-cols-md-4 g-4">
     <div class="col">
-        <div class="card" style="background-color: #e3f2fd;">
+        <div class="card" style="background-color: #e3f2fd; margin-left: 10px">
             <div class="card-body">
                 <h5 class="card-title"><a class="nav-link" href="{% url 'show_colors' %}">
                     <img style="width: 100px;height: 100px;"
                          src="{% static '/shop/media/Lovepik_com-401524139-color-brush.png' %}"
                          alt="...">
-                    Kolory</h5>
+                    Kolory</a></h5>
                 <p class="card-text">Zarządzaj kolorami swoich produktów ;)</p>
-                </a>
             </div>
         </div>
     </div>
@@ -46,7 +45,7 @@
         </div>
     </div>
     <div class="col">
-        <div class="card" style="background-color: #e3f2fd;">
+        <div class="card" style="background-color: #e3f2fd; margin-right: 10px">
             <div class="card-body">
                 <h5 class="card-title"><a class="nav-link" href="{% url 'show_categories' %}">
                     <img style="width: 100px;height: 100px;"

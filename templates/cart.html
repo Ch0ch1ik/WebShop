@@ -23,13 +23,39 @@
                 <td>{{ product.product.name }}</td>
                 <td>{{ product.product_color }}</td>
                 <td>{{ product.product_size }}</td>
-                <td>{{ product.amount }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button value="{{ product.amount }}" type="submit" name="up{{ product.id }}">+
+                        </button>&emsp;{{ product.amount }}&emsp;<button type="submit"
+                                                                         name="down{{ product.id }}"
+                                                                         value="{{ product.amount }}">-
+                    </button>
+                    </form>
+                </td>
                 <td>{{ product.product.price }}</td>
-                <td>{% widthratio product.amount 1 product.product.price %}</td>
+                <td>{{ product.get_sum }}</td>
             </tr>
         {% endfor %}
-
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Suma: {{ total_sum }}</td>
+        </tr>
     </table>
+    <div class="card" style="background-color: #D6F8D6">
+        <div class="card-body" style="display: inline-flex; justify-content: space-around">
+
+            <p><a class="link-dark" href="{% url 'categories' %}">Kontynuuj zakupy</a></p>
+            <p><a class="link-dark" href="{% url 'create_order' %}">Złoż zamówienie</a></p>
+        </div>
+    </div>
+
+
 
 
 {% endblock %}

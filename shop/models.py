@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
+import accounts.models
+
 
 # Create your models here.
 
@@ -60,9 +62,9 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, through='ProductInCart')
-    amount = models.FloatField(null=True)
+    made_order = models.BooleanField(default=False)
 
 
 class ProductInCart(models.Model):
@@ -72,9 +74,15 @@ class ProductInCart(models.Model):
     product_color = models.ForeignKey(Colors, on_delete=models.CASCADE)
     product_size = models.ForeignKey(Sizes, on_delete=models.CASCADE)
 
+    @property
+    def get_sum(self):
+        return self.product.price*self.amount
+
 
 class Order(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=False)
+    address = models.ForeignKey(accounts.models.Address, on_delete=models.CASCADE, null=True)

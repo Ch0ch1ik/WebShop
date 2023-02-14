@@ -5,9 +5,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">Wyloguj</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard' %}">Zarządzaj</a>
-            </li>
+            {% if user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard' %}">Zarządzaj</a>
+                </li>
+            {% endif %}
             <li>
                 <nav class="nav-item">
                     <div class="container-fluid">
@@ -15,10 +17,16 @@
                             <img src="{% static "/shop/media/kisspng-computer-icons-portable-network-graphics-scalable-shopping-cart-svg-png-icon-free-download-19-184-5ca6a1e6e52a30.1014776415544242949387.png" %}"
                                  alt="" width="30" height="24"
                                  class="d-inline-block align-text-top">
-                            Koszyk
+                            &nbsp;Koszyk
                         </a>
                     </div>
                 </nav>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'my_account' %}">Moje konto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled">Zalogowano: {{ user }}</a>
             </li>
         {% else %}
             <li class="nav-item">
@@ -30,9 +38,9 @@
             <li>
                 <nav class="nav-item">
                     <div class="container-fluid">
-                        <a class="nav-link" href="#">
-                            Koszyk
-                            <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png"
+                        <a class="nav-link" href="{% url 'cart' %}">
+                            &nbsp;Koszyk
+                            <img src="{% static "/shop/media/kisspng-computer-icons-portable-network-graphics-scalable-shopping-cart-svg-png-icon-free-download-19-184-5ca6a1e6e52a30.1014776415544242949387.png" %}"
                                  alt="" width="30" height="24"
                                  class="d-inline-block align-text-top">
 
@@ -40,6 +48,21 @@
                     </div>
                 </nav>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'my_account' %}">Moje konto</a>
+            </li>
         {% endif %}
     </ul>
 </div>
+<style>
+    .nav-link {
+        font-size: large;
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+
+    .nav-link:hover {
+        color: orangered;
+        cursor: pointer;
+    }
+</style>

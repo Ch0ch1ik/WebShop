@@ -49,6 +49,10 @@ urlpatterns = [
     path('categories/', shop_views.CategoriesView.as_view(), name='categories'),
     path('products/<int:pk>/', shop_views.CategoryProductsView.as_view(), name='products'),
     path('cart/', shop_views.CartView.as_view(), name='cart'),
+    path('product_card/<int:pk>/', shop_views.ProductCardView.as_view(), name='product_card'),
+    path('search/', shop_views.SearchView.as_view(), name='search'),
+    path('create_order/', shop_views.CreateOrderView.as_view(), name='create_order'),
+    path('my_account/', shop_views.MyAccountView.as_view(), name='my_account'),
 ]
 
 

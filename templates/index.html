@@ -11,35 +11,45 @@
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
         </div>
-        <div class="carousel-inner">
-            {% for product in products %}
+        <div class="carousel-inner" style="height: 600px;">
+            <div class="carousel-caption d-none d-md-block">
                 <div style="background: url({% static '/shop/media/gray_bk.jpg' %});width: -moz-max-content;height: 500px"
-                     ; class="carousel-item active" data-bs-interval="10000">
-                    {% if product.image %}
-                        <img style="padding: 30px" height="360px" src="{{ product.image.url }}" class="d-block w-100"
-                             alt="...">
-                    {% endif %}
-                    <div class="carousel-caption d-none d-md-block">
-{% with category=product.category.all|last %}
-                            <a href="{% url 'products' category.id  %}">
-                                <h5>{{ product.name }}</h5>
-                                <p>{{ product.description }}</p>
-                                <p>{{ product.price }}</p>
-                            </a>
-{% endwith %}
-                    </div>
+                     class="carousel-item active" data-bs-interval="5000">
+                    {% with product=products.0 %}{% include 'product_card.html' %}{% endwith %}
                 </div>
-            {% endfor %}
+            </div>
+
+            <div class="carousel-caption d-none d-md-block">
+                <div style="background: url({% static '/shop/media/gray_bk.jpg' %});width: -moz-max-content;height: 500px"
+                     class="carousel-item" data-bs-interval="5000">
+                    {% with product=products.1 %}{% include 'product_card.html' %}{% endwith %}
+                </div>
+            </div>
+
+
+            <div class="carousel-caption d-none d-md-block">
+                <div style="background: url({% static '/shop/media/gray_bk.jpg' %});width: -moz-max-content;height: 500px"
+                     class="carousel-item" data-bs-interval="5000">
+                    {% with product=products.2 %}{% include 'product_card.html' %}{% endwith %}
+                </div>
+            </div>
+
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+            integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+            crossorigin="anonymous"></script>
 
 
 {% endblock %}
